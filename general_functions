@@ -26,13 +26,7 @@ def letter_check(word,letters,caps = 'yes'):
     else:
         print('yes or no, retard')
     return aa
-## caps auto off
-def letter_check(word,letters):
-    a = []
-    for letter in letters:
-        if letter.lower() in word.lower():
-            a.append(letter.lower())
-    return a
+
 #List average
 average = lambda list: sum(list)/ len(list)
 
