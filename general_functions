@@ -1,0 +1,69 @@
+# Remove nulls IN: df, column-number OUT: Object 2 columns, index, no nulls data
+def non_null(data,col):
+    nonulls = data[data.iloc[:,col].notnull()]
+    return nonulls.iloc[:,col]
+
+# Delete letter/s from word IN: word (list or str), letter(str), x = how many times
+# OUT: str or list 
+def deleter(word, letter):
+    try: a = word.replace(letter,'')
+    except (AttributeError, TypeError):
+        b = str(letter)
+        a = str(word).replace(b, '')
+    return a
+
+#checks if letters are in word, capital option
+def letter_check(word,letters,caps):
+    aa = []
+    if str(caps).lower() == 'yes':
+        for letter in letters:
+            if letter in word:
+                aa.append(letter)
+    elif str(caps).lower() == 'no':
+        for letter in letters:
+            if letter.lower() in word.lower():
+                aa.append(letter.lower())
+    else:
+        print('yes or no, retard')
+    return aa
+## caps auto off
+def letter_check(word,letters):
+    a = []
+    for letter in letters:
+        if letter.lower() in word.lower():
+            a.append(letter.lower())
+    return a
+#List average
+average = lambda list: sum(list)/ len(list)
+
+#Searcher IN: word, data, column.no, caps on yes or no
+def colsearcher(words, data, column, caps):
+    findal = lambda x: all(word.lower() in x.lower() for word in words)
+    findcap = lambda x: all(word in x for word in words)
+    if caps.lower() == 'no':
+        return data[data.iloc[:,column].apply(findal)]
+    if caps.lower() == 'yes':
+        return data[data.iloc[:,column].apply(findcap)]
+    else:
+        return 'yes or no for caps'
+    
+#Convert to time to number
+def convert_time_to_num(time):
+  mins = int(time[-2:])
+  frac_of_hour = mins/60.0
+  hour = int(time[:-3])
+  time = hour + frac_of_hour
+  return time
+    
+'''
+Bar Graphs
+'''
+# Side-by-side bar chart maker
+doublebar_1 = lambda y_values1, bar_adjust: [2*element + (0.8 + bar_adjust) * 1 for element in range(len(y_values1))]
+doublebar_2 = lambda y_values2, bar_adjust: [2*element + (0.8 + bar_adjust) * 2 for element in range(len(y_values2))]
+plt.bar(doublebar_1(y1,0),y1)
+#plt.bar(doublebar_2(y2,0),y2)
+ 
+# Side-by Side bar xaxis midpointed ticks
+midticks = lambda x1,x2: [(a+b)/2 for (a,b) in zip(x1,x2)]    
+#print(midticks([6, 3, 4, 3, 5],[8, 12, 8, 9, 10]))
