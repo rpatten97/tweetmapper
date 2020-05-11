@@ -13,7 +13,7 @@ def deleter(word, letter):
     return a
 
 #checks if letters are in word, capital option
-def letter_check(word,letters,caps):
+def letter_check(word,letters,caps = 'yes'):
     aa = []
     if str(caps).lower() == 'yes':
         for letter in letters:
@@ -37,7 +37,7 @@ def letter_check(word,letters):
 average = lambda list: sum(list)/ len(list)
 
 #Searcher IN: word, data, column.no, caps on yes or no
-def colsearcher(words, data, column, caps):
+def colsearcher(words, data, column, caps = 'yes'):
     findal = lambda x: all(word.lower() in x.lower() for word in words)
     findcap = lambda x: all(word in x for word in words)
     if caps.lower() == 'no':
@@ -61,9 +61,10 @@ Bar Graphs
 # Side-by-side bar chart maker
 doublebar_1 = lambda y_values1, bar_adjust: [2*element + (0.8 + bar_adjust) * 1 for element in range(len(y_values1))]
 doublebar_2 = lambda y_values2, bar_adjust: [2*element + (0.8 + bar_adjust) * 2 for element in range(len(y_values2))]
-plt.bar(doublebar_1(y1,0),y1)
+#plt.bar(doublebar_1(y1,0),y1)
 #plt.bar(doublebar_2(y2,0),y2)
  
 # Side-by Side bar xaxis midpointed ticks
 midticks = lambda x1,x2: [(a+b)/2 for (a,b) in zip(x1,x2)]    
 #print(midticks([6, 3, 4, 3, 5],[8, 12, 8, 9, 10]))
+
